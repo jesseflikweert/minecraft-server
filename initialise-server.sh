@@ -8,4 +8,8 @@ su - minecraft -c "
   gcc -std=gnu11 -pedantic -Wall -Wextra -O2 -s -o mcrcon mcrcon.c
 
   ./mcrcon -h
+
+  cd ~/minecraft-server/server
+
+  ./start.sh
 "
