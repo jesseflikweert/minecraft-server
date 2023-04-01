@@ -6,6 +6,15 @@ read container_id
 echo 'Container password:'
 read -s container_password
 
+echo 'Do you agree to the Minecraft EULA (https://www.minecraft.net/en-us/eula)? Y/n'
+read agreed
+
+# check if the container was created successfully
+if [ $agreed -ne 'Y' ]; then
+    echo "Error: You must agree to the Minecraft EULA before setting up this Minecraft server container."
+    exit 1
+fi
+
 function exco {
   command_to_execute="$1"
   pct exec "$container_id" -- bash -c "$command_to_execute"
@@ -37,7 +46,7 @@ exco "apt-get update"
 exco "apt-get upgrade -y"
 
 # install required packages inside the container
-exco "apt-get install -y nano git build-essential"
+exco "apt-get install -y nano git build-essential openjdk-17-jre-headless"
 
 exco "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 

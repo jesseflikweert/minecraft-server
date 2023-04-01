@@ -11,5 +11,9 @@ su - minecraft -c "
 
   cd ~/minecraft-server/server
 
+  echo 'eula=true' > eula.txt
+
+  chmod +x ./start.sh
+
   ./start.sh
 "
