@@ -1,14 +1,10 @@
 #!/bin/bash
 
-# get the container ID and password from the command-line arguments
-container_id=$1
-container_password=$2
-mrcron_password=$3
+echo 'Container id:'
+read container_id
 
-if [ -z "$container_id" ] || [ -z "$container_password" ]  || [ -z "$mrcron_password" ]; then
-    echo "Usage: $0 <container_id> <container_password> <mrcron_password>"
-    exit 1
-fi
+echo 'Container password:'
+read -s container_password
 
 echo "Creating container $container_id..."
 
@@ -36,8 +32,10 @@ pct exec $container_id -- bash -c "apt-get update"
 pct exec $container_id -- bash -c "apt-get upgrade -y"
 
 # install required packages inside the container
-pct exec $container_id -- bash -c "apt-get install -y nano"
+pct exec $container_id -- bash -c "apt-get install -y nano git build-essential"
+
+pct exec $container_id -- bash -c "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 
 # initialise server
-pct exec $container_id -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
-
+#pct exec $container_id -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
+pct exec $container_id -- bash -c "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh"

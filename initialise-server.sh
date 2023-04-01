@@ -1,8 +1,5 @@
 #!/bin/bash
 
-apt-get update -y
-apt-get install -y git build-essential
-
 su - minecraft -c "
   git clone https://github.com/jesseflikweert/minecraft-server.git /home/minecraft
 
