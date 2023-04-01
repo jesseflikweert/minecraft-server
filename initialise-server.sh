@@ -1,7 +1,7 @@
 #!/bin/bash
 
 su - minecraft -c "
-  git clone https://github.com/jesseflikweert/minecraft-server.git /home/minecraft
+  git clone https://github.com/jesseflikweert/minecraft-server.git .
 
   cd ~/tools && git clone https://github.com/Tiiffi/mcrcon.git
 
