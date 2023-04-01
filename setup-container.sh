@@ -6,13 +6,11 @@ read container_id
 echo 'Container password:'
 read -s container_password
 
-echo 'Do you agree to the Minecraft EULA (https://www.minecraft.net/en-us/eula)? Y/n'
-read agreed
+read -p "Do you agree to the Minecraft EULA (https://www.minecraft.net/en-us/eula)? (Y/n)" answer
 
-# check if the container was created successfully
-if [ $agreed -ne 'Y' ]; then
-    echo "Error: You must agree to the Minecraft EULA before setting up this Minecraft server container."
-    exit 1
+if [ "$answer" != "Y" ]; then
+  echo "Script terminated."
+  exit 1
 fi
 
 function exco {
