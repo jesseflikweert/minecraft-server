@@ -29,16 +29,6 @@ fi
 # start the container
 pct start $container_id
 
-pct enter $container_id
-
-echo 'nameserver 8.8.8.8' > /etc/resolv.conf
-apt-get update
-apt-get upgrade -y
-apt-get install -y nano git build-essential
-useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft
-su - minecraft
-git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server-setup
-
 # set up resolv.conf
 exco "echo 'nameserver 8.8.8.8' > /etc/resolv.conf"
 
