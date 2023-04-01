@@ -6,6 +6,11 @@ read container_id
 echo 'Container password:'
 read -s container_password
 
+function exco {
+  command_to_execute="$1"
+  pct exec "$container_id" -- bash -c "$command_to_execute"
+}
+
 echo "Creating container $container_id..."
 
 # download the latest Debian template
@@ -24,18 +29,28 @@ fi
 # start the container
 pct start $container_id
 
+pct enter $container_id
+
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+apt-get update
+apt-get upgrade -y
+apt-get install -y nano git build-essential
+useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft
+su - minecraft
+git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server-setup
+
 # set up resolv.conf
-pct exec $container_id -- bash -c "echo 'nameserver 8.8.8.8' > /etc/resolv.conf"
+exco "echo 'nameserver 8.8.8.8' > /etc/resolv.conf"
 
 # update the packages inside the container
-pct exec $container_id -- bash -c "apt-get update"
-pct exec $container_id -- bash -c "apt-get upgrade -y"
+exco "apt-get update"
+exco "apt-get upgrade -y"
 
 # install required packages inside the container
-pct exec $container_id -- bash -c "apt-get install -y nano git build-essential"
+exco "apt-get install -y nano git build-essential"
 
-pct exec $container_id -- bash -c "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
+exco "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 
 # initialise server
-#pct exec $container_id -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
-pct exec $container_id -- bash -c "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh"
+#exco "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
+exco "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh"
