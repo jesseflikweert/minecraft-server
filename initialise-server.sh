@@ -1,5 +1,7 @@
 #!/bin/bash
 
+$rcon_password = $1;
+
 su - minecraft -c "
   git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server
 
@@ -12,6 +14,8 @@ su - minecraft -c "
   cd ~/minecraft-server/server
 
   echo 'eula=true' > eula.txt
+
+  echo 'rcon.password=$rcon_password' >> server.properties
 
   chmod +x ./start.sh
 

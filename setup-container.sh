@@ -6,6 +6,9 @@ read container_id
 echo 'Container password:'
 read -s container_password
 
+echo 'RCON password:'
+read -s rcon_password
+
 read -p "Do you agree to the Minecraft EULA (https://www.minecraft.net/en-us/eula)? (Y/n)" answer
 
 if [ "$answer" != "Y" ]; then
@@ -50,4 +53,4 @@ exco "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 
 # initialise server
 #exco "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
-exco "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh"
+exco "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh $rcon_password"
