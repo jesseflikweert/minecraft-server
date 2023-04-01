@@ -39,5 +39,5 @@ pct exec $container_id -- bash -c "apt-get upgrade -y"
 pct exec $container_id -- bash -c "apt-get install -y nano"
 
 # initialise server
-pct exec $container_id -- bash -c "$(wget -qLO - https://github.com/jesseflikweert/minecraft-server/initialise-server.sh)"
+pct exec $container_id -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
 
