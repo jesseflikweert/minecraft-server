@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$rcon_password = $1;
+rcon_password = "$1";
 
 su - minecraft -c "
   git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server
