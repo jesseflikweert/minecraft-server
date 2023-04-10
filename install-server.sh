@@ -14,8 +14,8 @@ cd ~/minecraft-server/server
 
 echo 'eula=true' > eula.txt
 
-sed -i "s/^rcon.password=.*/rcon.password=$rcon_password/g" server.properties
+#sed -i "s/^rcon.password=.*/rcon.password=$rcon_password/g" server.properties
 
-chmod +x ./start.sh
+#chmod +x ./start.sh
 
-./start.sh
+#./start.sh
