@@ -1,0 +1,31 @@
+[Unit]
+
+Description=Minecraft Server
+
+After=network.target
+
+[Service]
+
+User=minecraft
+
+Nice=1
+
+KillMode=none
+
+SuccessExitStatus=0 1
+
+ProtectSystem=full
+
+PrivateDevices=true
+
+NoNewPrivileges=true
+
+WorkingDirectory=/home/minecraft/minecraft-server/server
+
+ExecStart=/usr/bin/bash /home/minecraft/minecraft-server/server/start.sh
+
+ExecStop=/home/minecraft/minecraft-server/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p YOURPASSWORD stop
+
+[Install]
+
+WantedBy=multi-user.target
