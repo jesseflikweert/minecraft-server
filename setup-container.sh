@@ -53,4 +53,4 @@ exco "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 
 # initialise server
 #exco "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh)"
-exco "wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O /tmp/initialise-server.sh && bash /tmp/initialise-server.sh $rcon_password"
+exco "su - minecraft -c \"cd ~ && wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/initialise-server.sh -O ./initialise-server.sh && bash ./initialise-server.sh $rcon_password\""

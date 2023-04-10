@@ -1,23 +1,21 @@
 #!/bin/bash
 
-rcon_password = "$1";
+rcon_password="$i"
 
-su - minecraft -c "
-  git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server
+git clone https://github.com/jesseflikweert/minecraft-server.git ~/minecraft-server
 
-  cd ~/minecraft-server/tools/mcrcon
+cd ~/minecraft-server/tools/mcrcon
 
-  gcc -std=gnu11 -pedantic -Wall -Wextra -O2 -s -o mcrcon mcrcon.c
+gcc -std=gnu11 -pedantic -Wall -Wextra -O2 -s -o mcrcon mcrcon.c
 
-  ./mcrcon -h
+./mcrcon -h
 
-  cd ~/minecraft-server/server
+cd ~/minecraft-server/server
 
-  echo 'eula=true' > eula.txt
+echo 'eula=true' > eula.txt
 
-  echo 'rcon.password=test123' >> server.properties
+sed -i "s/^rcon.password=.*/rcon.password=$rcon_password/g" server.properties
 
-  chmod +x ./start.sh
+chmod +x ./start.sh
 
-  ./start.sh
-"
+./start.sh
