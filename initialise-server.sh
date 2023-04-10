@@ -15,7 +15,7 @@ su - minecraft -c "
 
   echo 'eula=true' > eula.txt
 
-  echo 'rcon.password=$rcon_password' >> server.properties
+  echo 'rcon.password=test123' >> server.properties
 
   chmod +x ./start.sh
 
