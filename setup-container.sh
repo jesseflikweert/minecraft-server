@@ -50,4 +50,4 @@ exco "useradd -r -m -U -d /home/minecraft -s /bin/bash minecraft"
 
 # install server
 #exco "$(wget -qLO - https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/install-server.sh)"
-exco "su - minecraft -c \"cd ~ && wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/tools/install-server.sh -O ./install-server.sh && bash ./install-server.sh $rcon_password\""
+exco "su - minecraft -c \"cd ~ && wget -q https://raw.githubusercontent.com/jesseflikweert/minecraft-server/main/tools/install-server.sh -O ./install-server.sh && bash ./install-server.sh\""

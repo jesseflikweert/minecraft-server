@@ -12,9 +12,9 @@ The server's jar file is `paper-1.19.4-484.jar`.
 * Execute `bash ./start.sh`
 * Stop the server (`ctrl+c`)
 * Accept eula using `nano eula.txt`
-* Exit using `exit` to switch back to root.
 * Using `nano server.properties`, set the properties `rcon.password=YOURPASSWORD` and `enable-rcon=true`
-* Initialize the systemctl file using `cp ~/minecraft-server/systemctl.template /etc/systemd/system/minecraft.service`
+* Exit using `exit` to switch back to root.
+* Initialize the systemctl file using `cp /home/minecraft/minecraft-server/tools/systemctl.template /etc/systemd/system/minecraft.service`
 * Fill in the RCON password using `nano /etc/systemd/system/minecraft.service`
 * Execute `systemctl start minecraft`
 * Check status using `systemctl status minecraft`
